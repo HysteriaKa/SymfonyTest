@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block title 'Sparklending'%}
+
+{% block body %}
+	<div class="jumbotron text-center">
+		<h1>Sparklending</h1>
+
+		<h2 class="has-text-align-left has-black-color has-text-color">Le Crowfunding immobilier</h2>
+		<p class="max-w-3xl mx-auto mt-4 text-xl leading-7 text-center text-gray-500">
+			Sparklending est la première plateforme de crowdfunding exclusivement
+																								          dédiée à l'immobilier qui propose à ses investisseurs des projets
+																								          représentant les meilleures opportunités d'investissement.
+		</p>
+	</div>
+	<div class="container">
+		<h2>Les derniers projets</h2>
+		<div class="row" flex>
+			{% for property in properties %}
+				<div class="col-3">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">
+								<a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title}}</a>
+							</h5>
+							<p class="card-text">{{ property.city }}
+								({{ property.postalCode }})
+							</p>
+							<div class="text-primary" style="font-weight:bold; font-size: 2rem">{{ property.formattedPrice}}
+								€
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+
+		</div>
+
+
+	</div>
+{% endblock %}
